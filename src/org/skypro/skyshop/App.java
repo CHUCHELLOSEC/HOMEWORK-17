@@ -4,7 +4,10 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.basket.ProductBasket;
 
 public class App {
-    static void main() {
+    private static String[] args;
+
+    static void main(String[] args) {
+        App.args = args;
         // Создаём несколько продуктов
         Product apple = new Product("Яблоко", 50);
         Product bread = new Product("Хлеб", 30);
