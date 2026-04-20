@@ -19,7 +19,7 @@ public class ProductBasket {
         System.out.println("Невозможно добавить продукт");
     }
 
-    // Общая стоимость всех продуктов в корзине
+    // Общая стоимость всех продуктов в корзине//
     public int getTotalCost() {
         int total = 0;
         for (Product p : products) {
@@ -30,7 +30,7 @@ public class ProductBasket {
         return total;
     }
 
-    // Печать содержимого корзины
+    // Печать содержимого корзины//
     public void printBasket() {
         boolean empty = true;
         for (Product p : products) {
@@ -46,7 +46,7 @@ public class ProductBasket {
         }
     }
 
-    // Проверка наличия продукта по имени
+    // Проверка наличия продукта по имени//
     public boolean containsProduct(String name) {
         for (Product p : products) {
             if (p != null && p.name().equals(name)) {
@@ -56,7 +56,7 @@ public class ProductBasket {
         return false;
     }
 
-    // Очистка корзины (обнуление всех элементов)
+    // Очистка корзины (обнуление всех элементов)//
     public void clearBasket() {
         Arrays.fill(products, null);
     }
