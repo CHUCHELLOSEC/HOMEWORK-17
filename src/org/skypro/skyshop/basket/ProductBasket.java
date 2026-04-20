@@ -2,8 +2,6 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-import java.util.Arrays;
-
 public class ProductBasket {
     private static final int MAX_SIZE = 5;
     private final Product[] products = new Product[MAX_SIZE];
@@ -19,23 +17,23 @@ public class ProductBasket {
         System.out.println("Невозможно добавить продукт");
     }
 
-    // Общая стоимость всех продуктов в корзине
+    // Общая стоимость всех продуктов в корзине//
     public int getTotalCost() {
         int total = 0;
         for (Product p : products) {
             if (p != null) {
-                total += p.price();
+                total += p.getPrice();
             }
         }
         return total;
     }
 
-    // Печать содержимого корзины
+    // Печать содержимого корзины//
     public void printBasket() {
         boolean empty = true;
         for (Product p : products) {
             if (p != null) {
-                System.out.println(p.name() + ": " + p.price());
+                System.out.println(p.getName() + ": " + p.getPrice());
                 empty = false;
             }
         }
@@ -46,18 +44,20 @@ public class ProductBasket {
         }
     }
 
-    // Проверка наличия продукта по имени
+    // Проверка наличия продукта по имени//
     public boolean containsProduct(String name) {
         for (Product p : products) {
-            if (p != null && p.name().equals(name)) {
+            if (p != null && p.getName().equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    // Очистка корзины (обнуление всех элементов)
+    // Очистка корзины (обнуление всех элементов)//
     public void clearBasket() {
-        Arrays.fill(products, null);
+        for (int i = 0; i < products.length; i++) {
+            products[i] = null;
+        }
     }
 }
