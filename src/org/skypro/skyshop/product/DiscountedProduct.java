@@ -12,13 +12,13 @@ public class DiscountedProduct extends Product {
 
     @Override
     public int getPrice() {
-        // Цена с учётом скидки, округление в меньшую сторону (целое число)
+        // Цена с учётом скидки, округление в меньшую сторону (целое число)//
         return basePrice * (100 - discountPercent) / 100;
     }
 
     @Override
     public boolean isSpecial() {
-        return true; // товар со скидкой – специальный
+        return true; // товар со скидкой – специальный//
     }
 
     @Override
