@@ -1,52 +1,51 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.*;
+import org.skypro.skyshop.basket.Product;
 
 public class App {
-    private static String[] args;
+    public static void main(String[] args) {
+        // Обычные товары
+        org.skypro.skyshop.product.Product apple = new SimpleProduct("Яблоко", 50);
+        org.skypro.skyshop.product.Product bread = new SimpleProduct("Хлеб", 30);
 
-    static void main(String[] args) {
-        App.args = args;
-        // Создаём несколько продуктов
-        Product apple = new Product("Яблоко", 50);
-        Product bread = new Product("Хлеб", 30);
-        Product milk = new Product("Молоко", 80);
-        Product cheese = new Product("Сыр", 150);
-        Product butter = new Product("Масло", 120);
-        Product extra = new Product("Печенье", 45);
+        // Товары со скидкой
+        org.skypro.skyshop.product.Product cheese = new DiscountedProduct("Сыр", 150, 20);   // 20% скидка -> цена 120
+        org.skypro.skyshop.product.Product butter = new DiscountedProduct("Масло", 120, 10); // 10% скидка -> цена 108
 
-        // Создаём корзину//
-        ProductBasket basket = new ProductBasket();
+        // Товары с фиксированной ценой
+        org.skypro.skyshop.product.Product milk = new FixPriceProduct("Молоко");
+        org.skypro.skyshop.product.Product cookies = new FixPriceProduct("Печенье");
 
-        // 1. Добавляем продукты (заполняем корзину до предела)//
+        // Создаём корзину
+        Product basket = new Product();
+
+        // Добавляем продукты
         System.out.println("--- Добавление продуктов ---");
         basket.addProduct(apple);
         basket.addProduct(bread);
-        basket.addProduct(milk);
         basket.addProduct(cheese);
         basket.addProduct(butter);
-        // Попытка добавить шестой продукт (корзина рассчитана на 5)//
-        basket.addProduct(extra);
+        basket.addProduct(milk);
+        // Шестой продукт не добавится (корзина на 5)
+        basket.addProduct(cookies);
 
-        // 2. Печать содержимого и стоимости//
+        // Вывод содержимого
         System.out.println("\n--- Содержимое корзины ---");
         basket.printBasket();
-        System.out.println("Общая стоимость: " + basket.getTotalCost());
 
-        // 3. Поиск товаров//
-        System.out.println("\n--- Поиск товаров ---");
+        // Общая стоимость
+        System.out.println("\nОбщая стоимость (метод getTotalCost): " + basket.getTotalCost());
+
+        // Поиск товаров
+        System.out.println("\n--- Поиск ---");
         System.out.println("Поиск 'Молоко': " + basket.containsProduct("Молоко"));
         System.out.println("Поиск 'Колбаса': " + basket.containsProduct("Колбаса"));
 
-        // 4. Очистка корзины//
-        System.out.println("\n--- Очистка корзины ---");
+        // Очистка корзины
         basket.clearBasket();
-
-        // 5. Печать пустой корзины и её стоимость//
-        System.out.println("\n--- Пустая корзина ---");
+        System.out.println("\n--- После очистки ---");
         basket.printBasket();
-        System.out.println("Общая стоимость: " + basket.getTotalCost());
-        System.out.println("Поиск 'Яблоко' после очистки: " + basket.containsProduct("Яблоко"));
+        System.out.println("Стоимость пустой корзины: " + basket.getTotalCost());
     }
 }
