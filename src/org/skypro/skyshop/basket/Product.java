@@ -1,12 +1,10 @@
 package org.skypro.skyshop.basket;
-
-import org.skypro.skyshop.product.Product;
-
-public class ProductBasket {
+// TESt
+public class Product {
     private static final int MAX_SIZE = 5;
-    private final Product[] products = new Product[MAX_SIZE];
+    private final org.skypro.skyshop.product.Product[] products = new org.skypro.skyshop.product.Product[MAX_SIZE];
 
-    public void addProduct(Product product) {
+    public void addProduct(org.skypro.skyshop.product.Product product) {
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
                 products[i] = product;
@@ -18,7 +16,7 @@ public class ProductBasket {
 
     public int getTotalCost() {
         int total = 0;
-        for (Product p : products) {
+        for (org.skypro.skyshop.product.Product p : products) {
             if (p != null) {
                 total += p.getPrice();
             }
@@ -30,9 +28,9 @@ public class ProductBasket {
         boolean empty = true;
         int specialCount = 0;
 
-        for (Product p : products) {
+        for (org.skypro.skyshop.product.Product p : products) {
             if (p != null) {
-                System.out.println(p.toString());
+                System.out.println(p.toString()); // используем переопределённый toString
                 if (p.isSpecial()) {
                     specialCount++;
                 }
@@ -49,7 +47,7 @@ public class ProductBasket {
     }
 
     public boolean containsProduct(String name) {
-        for (Product p : products) {
+        for (org.skypro.skyshop.product.Product p : products) {
             if (p != null && p.getName().equals(name)) {
                 return true;
             }

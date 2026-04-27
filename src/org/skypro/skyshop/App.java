@@ -1,49 +1,38 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.basket.ProductBasket;
 
 public class App {
-    static void main() {
-        // Создаём несколько продуктов
-        Product apple = new Product("Яблоко", 50);
-        Product bread = new Product("Хлеб", 30);
-        Product milk = new Product("Молоко", 80);
-        Product cheese = new Product("Сыр", 150);
-        Product butter = new Product("Масло", 120);
-        Product extra = new Product("Печенье", 45);
+    public static void main(String[] args) {
+        Product apple = new SimpleProduct("Яблоко", 50);
+        Product bread = new SimpleProduct("Хлеб", 30);
+        Product cheese = new DiscountedProduct("Сыр", 150, 20);
+        Product butter = new DiscountedProduct("Масло", 120, 10);
+        Product milk = new FixPriceProduct("Молоко");
+        Product cookies = new FixPriceProduct("Печенье");
 
-        // Создаём корзину
         ProductBasket basket = new ProductBasket();
 
-        // 1. Добавляем продукты (заполняем корзину до предела)
         System.out.println("--- Добавление продуктов ---");
         basket.addProduct(apple);
         basket.addProduct(bread);
-        basket.addProduct(milk);
         basket.addProduct(cheese);
         basket.addProduct(butter);
-        // Попытка добавить шестой продукт (корзина рассчитана на 5)
-        basket.addProduct(extra);
+        basket.addProduct(milk);
+        basket.addProduct(cookies);
 
-        // 2. Печать содержимого и стоимости
         System.out.println("\n--- Содержимое корзины ---");
         basket.printBasket();
-        System.out.println("Общая стоимость: " + basket.getTotalCost());
 
-        // 3. Поиск товаров
-        System.out.println("\n--- Поиск товаров ---");
+        System.out.println("\nОбщая стоимость: " + basket.getTotalCost());
+
+        System.out.println("\n--- Поиск ---");
         System.out.println("Поиск 'Молоко': " + basket.containsProduct("Молоко"));
         System.out.println("Поиск 'Колбаса': " + basket.containsProduct("Колбаса"));
 
-        // 4. Очистка корзины
-        System.out.println("\n--- Очистка корзины ---");
         basket.clearBasket();
-
-        // 5. Печать пустой корзины и её стоимость
-        System.out.println("\n--- Пустая корзина ---");
+        System.out.println("\n--- После очистки ---");
         basket.printBasket();
-        System.out.println("Общая стоимость: " + basket.getTotalCost());
-        System.out.println("Поиск 'Яблоко' после очистки: " + basket.containsProduct("Яблоко"));
     }
 }
